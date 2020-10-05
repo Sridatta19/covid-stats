@@ -32,7 +32,7 @@ const PANEL_VARIANTS = {
     transition: {
       duration: 0.48,
       ease: [0.445, 0.05, 0.55, 0.95],
-      delay: 1.7 + i * 0.04,
+      delay: 1 + i * 0.04,
     },
   }),
   exit: {

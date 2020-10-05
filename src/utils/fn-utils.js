@@ -2,27 +2,32 @@ export const retrieveRecentDatesFormatted = (length = 14) => {
   const dates = Array.from({ length })
   return dates.reduce((acc, _, index) => {
     const subtractedDate = new Date().setDate(new Date().getDate() - index)
-    const date = new Date(subtractedDate)
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    acc[
-      `2020-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`
-    ] = true
+    const date = formatDate(subtractedDate)
+    acc[date] = true
     return acc
   }, {})
+}
+
+export const formatDate = dt => {
+  const date = new Date(dt)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `2020-${month < 10 ? `0${month}` : month}-${
+    day < 10 ? `0${day}` : day
+  }`
 }
 
 export const filterPredicate = d =>
   d !== "Unknown" && d !== "Foreign Evacuees" && d !== "Other State"
 
-const prepareEntry = (entry, date) => ({
+const prepareEntry = ({ delta, total }, date) => ({
   date,
-  dc: entry.delta.confirmed,
-  dd: entry.delta.deceased,
-  dr: entry.delta.recovered,
-  tc: entry.total.confirmed,
-  td: entry.total.deceased,
-  tr: entry.total.recovered,
+  dc: delta && delta.confirmed ? delta.confirmed : 0,
+  dd: delta && delta.deceased ? delta.deceased : 0,
+  dr: delta && delta.recovered ? delta.recovered : 0,
+  tc: total && total.confirmed ? total.confirmed : 0,
+  td: total && total.deceased ? total.deceased : 0,
+  tr: total && total.recovered ? total.recovered : 0,
 })
 
 export const safeGet = (propertyArray, object) => {
@@ -85,14 +90,13 @@ export const getStateEntry = (filtered, response, stateId) => {
 
 export const getCountryEntry = (filtered, response) => {
   const deltaConfirmed = safeGet(["TT", "delta", "confirmed"], response)
-  const formattedDate = getEntryDate(response.TT)
-  if (deltaConfirmed && filtered[filtered.length - 1].date !== formattedDate) {
-    return prepareEntry(response.TT, formattedDate)
+  if (deltaConfirmed) {
+    return prepareEntry(response.TT, getEntryDate(response.TT))
   }
   return null
 }
 
-const getEntryDate = entry => {
+export const getEntryDate = entry => {
   const dateStr =
     safeGet(["meta", "last_updated"], entry) ||
     safeGet(["meta", "tested", "last_updated"], entry)
@@ -111,16 +115,21 @@ export const transformKeys = (initialObject, callback) => {
 }
 
 export const calculateAverage = (data, key, days = 21) => {
-  const lastWeekAverage = Math.floor(
-    data.slice(data.length - 7).reduce((acc, elem) => acc + elem[key], 0) / 7
+  const lw = Math.floor(
+    data
+      .slice(data.length - 8)
+      .slice(0, 7)
+      .reduce((acc, elem) => acc + elem[key], 0) / 7
   )
-  const previousAverage = Math.floor(
+  const pw = Math.floor(
     data
       .slice(data.length - days)
       .slice(0, 7)
       .reduce((acc, elem) => acc + elem[key], 0) / 7
   )
-  return Math.ceil(
-    ((lastWeekAverage - previousAverage) / previousAverage) * 100
-  )
+  return lw === 0 && pw === 0
+    ? 0
+    : pw === 0
+    ? 100
+    : Math.ceil(((lw - pw) / pw) * 100)
 }

@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 
 import Dashboard from "@components/dashboard"
 import { getCountryEntry } from "@utils/fn-utils"
+import { getEntryDate } from "../utils/fn-utils"
 
 const edgeReducer = (acc, elem) => ({
   ...acc,
@@ -22,11 +23,16 @@ const IndexPage = ({
     if (apiResult) {
       const entry = getCountryEntry(data, apiResult)
       if (entry) {
-        setData(d => d.concat(entry))
+        if (getEntryDate(apiResult.TT) !== data[data.length - 1].date) {
+          setData(d => d.concat(entry))
+        } else {
+          setData(d => d.slice(0, d.length - 2).concat(entry))
+        }
       }
     }
   }, [apiResult])
   const childData = edges.map(({ node }) => node).reduce(edgeReducer, {})
+  console.log(childData)
   return (
     <Dashboard
       stateId="tt"

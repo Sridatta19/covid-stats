@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import { navigate } from "gatsby"
 
 import { Downtrend, Uptrend, SortAcs, SortDesc } from "@components/icons"
-import { TOTAL_KEY_MAPPINGS, LABEL_MAPPINGS } from "@utils/constants"
-import { transformKeys, filterPredicate } from "@utils/fn-utils"
+import { TOTAL_KEY_MAPPINGS, LABEL_MAPPINGS, STROKES } from "@utils/constants"
+import { formatDate, transformKeys, filterPredicate } from "@utils/fn-utils"
 import DISTRICT_CODES from "@lib/districtNames"
 import stateCodes from "@lib/stateCodes"
 
@@ -14,6 +14,7 @@ const DataTable = ({ stateId, childData, dataKey }) => {
   const [isAscSort, changeSortOrder] = useState(false)
   useEffect(() => {
     changeSort("lw")
+    changeSortOrder(false)
   }, [dataKey])
   const changeSort = newKey => {
     if (newKey === sortKey) {
@@ -33,8 +34,13 @@ const DataTable = ({ stateId, childData, dataKey }) => {
         .slice(childData[code].data.length - 14)
         .slice(0, 7)
         .reduce((acc, elem) => acc + elem[dataKey], 0)
+      const lastEntry = childData[code].data[childData[code].data.length - 1]
       return {
         code,
+        date: lastEntry.date,
+        dc: lastEntry.dc,
+        dd: lastEntry.dd,
+        dr: lastEntry.dr,
         name: stateCodes[code] || code,
         [TOTAL_KEY_MAPPINGS[dataKey]]:
           childData[code].data[childData[code].data.length - 1][
@@ -42,7 +48,12 @@ const DataTable = ({ stateId, childData, dataKey }) => {
           ],
         lw,
         pw,
-        average: Math.ceil(((lw - pw) / pw) * 100),
+        average:
+          lw === 0 && pw === 0
+            ? 0
+            : pw === 0
+            ? 100
+            : Math.ceil(((lw - pw) / pw) * 100),
       }
     })
     .filter(el => el[TOTAL_KEY_MAPPINGS[dataKey]] !== 0)
@@ -133,6 +144,12 @@ const TableBody = ({ stateId, dataKey, data }) => {
               className="px-2 md:px-4 py-3 break-normal cursor-pointer whitespace-pre-wrap text-xxs sm:text-sm leading-5 font-medium text-primary"
             >
               {el.code}
+              {el.date === formatDate(new Date()) && (
+                <p
+                  className="text-xxs md:text-sm"
+                  style={{ color: STROKES[dataKey] }}
+                >{`${el[dataKey] > 0 ? "+" : ""}${el[dataKey]}`}</p>
+              )}
             </td>
             <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
               {new Intl.NumberFormat("en-IN").format(

@@ -64,11 +64,15 @@ const MainSection = ({
 }) => {
   return (
     <>
-      {(!displayMode || displayMode === "list") && (
+      {(!displayMode || displayMode === "list") && childData && (
         <DataTable stateId={stateId} dataKey={dataKey} childData={childData} />
       )}
       {(!displayMode || displayMode === "chart") && (
-        <div className="space-y-8 lg:space-y-10">
+        <div
+          className={`space-y-8 lg:space-y-10 ${
+            !childData && "lg:col-start-2"
+          }`}
+        >
           <FadeContainer>
             <BarChart data={data} dataKey={dataKey} />
             <StatsSection dataKey={dataKey} data={data} />
@@ -83,7 +87,7 @@ const MainSection = ({
           </FadeContainer>
         </div>
       )}
-      {(!displayMode || displayMode === "map") && (
+      {(!displayMode || displayMode === "map") && childData && (
         <div className="min-w-full h-120 lg:h-144 flex flex-col">
           <Mapbox
             data={data}
