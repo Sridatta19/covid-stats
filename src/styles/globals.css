@@ -1,0 +1,163 @@
+/* purgecss start ignore */
+
+.table-head {
+  @apply sticky top-0 dark-bg-2 cursor-pointer px-2 md:px-4 py-3 break-normal text-left text-xxs sm:text-sm leading-4 font-medium uppercase tracking-wider;
+}
+
+/* VARIABLES ----- END */
+
+.dark-bg {
+  @apply bg-gray-700 dark:bg-gray-100;
+}
+
+.dark-bg-2 {
+  @apply bg-gray-200 dark:bg-gray-500 text-gray-700 dark:text-gray-200;
+}
+
+.theme-bg {
+  @apply bg-gray-50 dark:bg-gray-700;
+}
+
+.text-light {
+  @apply text-gray-50 dark:text-gray-700;
+}
+
+.highlight-color {
+  @apply text-sm md:text-lg text-red-600 dark:text-yellow-300 font-mont;
+}
+
+body {
+  @apply bg-gray-50 dark:bg-gray-700 m-0;
+  background-image: url(../../assets/bubbles.svg);
+}
+
+html.dark body {
+  background-image: url(../../assets/topography.svg) !important;
+}
+
+.text-primary {
+  color: #002f3c;
+  @apply dark:text-gray-50;
+}
+
+.text-secondary {
+  @apply text-gray-600 dark:text-gray-200;
+}
+
+.text-tertiary {
+  @apply text-gray-700 dark:text-gray-100;
+}
+
+.border-primary {
+  @apply border-gray-700 dark:border-gray-100;
+}
+
+.dark-border {
+  @apply border-gray-200 dark:border-gray-50;
+}
+
+.text-blue {
+  color: #002f3c;
+}
+
+/* VARIABLES ----- END */
+
+.toggle-button {
+  @apply border border-primary;
+  @apply relative inline-flex items-center px-4 py-2 text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 transition ease-in-out duration-150;
+}
+
+.border-primary {
+  @apply border-gray-700 dark:border-gray-100;
+}
+
+.text-block {
+  @apply bg-white p-1 rounded-sm whitespace-no-wrap;
+}
+
+.mapboxgl-popup {
+  @apply absolute top-0 left-0 !important;
+}
+
+.flex-block {
+  @apply flex justify-between;
+}
+
+.text-head {
+  @apply text-gray-900 text-base font-mont mb-1;
+}
+
+.text-desc {
+  @apply text-gray-600 text-xs font-serif font-bold;
+}
+
+.text-value {
+  @apply text-gray-600 text-xs font-serif;
+}
+
+.mapboxgl-popup-close-button {
+  @apply px-1 text-sm !important;
+}
+
+.Chart text {
+  @apply fill-current text-gray-600 dark:text-gray-200;
+}
+
+.Line {
+  transition: all 0.3s ease-out;
+}
+
+.Line--type-line {
+  fill: none;
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+}
+
+.Line--type-area {
+  fill: rgba(152, 128, 250, 0.185);
+  stroke-width: 0;
+}
+
+.Axis__line {
+  @apply stroke-current text-gray-400 dark:text-gray-600;
+}
+
+.Axis__label {
+  text-anchor: middle;
+  font-size: 0.9em;
+  letter-spacing: 0.01em;
+}
+
+.Axis__tick {
+  @apply fill-current text-gray-700 dark:text-gray-50;
+  font-size: 0.7em;
+  transition: all 0.3s ease-out;
+}
+
+.AxisHorizontal .Axis__tick {
+  text-anchor: middle;
+}
+
+.AxisVertical .Axis__tick {
+  dominant-baseline: middle;
+  text-anchor: end;
+}
+
+.Circles__circle {
+  fill: #9980fa;
+  transition: all 0.3s ease-out;
+}
+
+.Bars__rect {
+  transition: all 0.3s ease-out;
+}
+
+.Bars__rect:hover {
+  @apply fill-current text-gray-800 dark:text-gray-50 !important;
+}
+
+.domain,
+.tick line {
+  stroke: #dadada;
+}
+/* purgecss end ignore */

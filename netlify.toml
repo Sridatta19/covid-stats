@@ -1,0 +1,3 @@
+[build]
+  build = "yarn clean && yarn build"
+  publish = "public/"
