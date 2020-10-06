@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 
 import Dashboard from "@components/dashboard"
-import { getCountryEntry } from "@utils/fn-utils"
-import { getEntryDate } from "../utils/fn-utils"
+import { getCountryEntry, getEntryDate, getStateEntry } from "@utils/fn-utils"
 
 const edgeReducer = (acc, elem) => ({
   ...acc,
@@ -19,20 +18,37 @@ const IndexPage = ({
   const [data, setData] = useState(
     edges.map(({ node }) => node).reduce(edgeReducer, {}).TT.data
   )
+  const [childData, setChildData] = useState(
+    edges.map(({ node }) => node).reduce(edgeReducer, {})
+  )
   useEffect(() => {
     if (apiResult) {
+      // Calculate Latest 'TT' Entry
       const entry = getCountryEntry(data, apiResult)
       if (entry) {
         if (getEntryDate(apiResult.TT) !== data[data.length - 1].date) {
+          // Append Latest Entry Fetched by API
           setData(d => d.concat(entry))
         } else {
+          // Merge Latest Entry Fetched by API
           setData(d => d.slice(0, d.length - 2).concat(entry))
         }
       }
+      const newChildData = Object.keys(childData).reduce((acc, code) => {
+        const stateEntry = getStateEntry(childData[code].data, apiResult, code)
+        return {
+          ...acc,
+          [code]: {
+            id: code,
+            data: stateEntry
+              ? childData[code].data.concat(stateEntry)
+              : childData[code].data,
+          },
+        }
+      }, {})
+      setChildData(newChildData)
     }
   }, [apiResult])
-  const childData = edges.map(({ node }) => node).reduce(edgeReducer, {})
-  console.log(childData)
   return (
     <Dashboard
       stateId="tt"

@@ -3,7 +3,7 @@ import { ChartIcon, ListIcon, MapIcon } from "@components/icons"
 
 const ToggleDisplayMode = ({ displayMode, setMode }) => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="my-4 flex justify-center items-center">
       <span className="relative z-0 inline-flex shadow-sm rounded-md">
         <button
           aria-label="Charts"

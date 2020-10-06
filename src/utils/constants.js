@@ -73,7 +73,7 @@ export const STROKES = {
 }
 
 export const KEY_BUTTON_GRADIENTS = {
-  dc: "from-blue-700 to-blue-300",
+  dc: "from-blue-600 to-blue-400",
   dd: "from-red-500 to-orange-400",
-  dr: "from-green-600 to-yellow-300",
+  dr: "from-green-600 to-yellow-400",
 }

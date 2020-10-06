@@ -10,6 +10,7 @@ import ToggleDisplayMode from "@components/toggleDisplayMode"
 import Mapbox from "@components/mapbox"
 import DataTable from "@components/dataTable"
 import StatsSection from "@components/dashboard/statsSection"
+import FoldWrapper from "@components/foldWrapper"
 
 import { retrieveRecentDatesFormatted } from "@utils/fn-utils"
 import { LG_SCREEN, MD_SCREEN, CHART_DAYS } from "@utils/constants"
@@ -37,7 +38,10 @@ const Dashboard = ({ title, stateId, data, childData }) => {
         <ToggleDisplayMode setMode={setMode} displayMode={displayMode} />
       )}
       <Header title={title} />
-      <div className="lg:grid lg:grid-cols-3 gap-x-3 mt-4">
+      <div
+        className="lg:grid lg:grid-cols-3 gap-x-3 mt-4"
+        style={{ perspective: 1200 }}
+      >
         <MainSection
           width={width}
           setKey={setKey}
@@ -62,8 +66,9 @@ const MainSection = ({
   data,
   setKey,
 }) => {
+  const Container = width > LG_SCREEN ? FoldWrapper : React.Fragment
   return (
-    <>
+    <Container>
       {(!displayMode || displayMode === "list") && childData && (
         <DataTable stateId={stateId} dataKey={dataKey} childData={childData} />
       )}
@@ -98,7 +103,7 @@ const MainSection = ({
           />
         </div>
       )}
-    </>
+    </Container>
   )
 }
 
@@ -110,8 +115,8 @@ Dashboard.propTypes = {
 }
 
 const Header = ({ title }) => (
-  <div className="mx-12 mt-4 text-center">
-    <h1 className="text-2xl md:text-4xl font-mont font-extrabold text-primary uppercase">
+  <div className="mx-12 text-center">
+    <h1 className="text-2xl sm:text-4xl font-arvo font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 dark:from-yellow-300 via-green-500 dark:via-pink-500 to-yellow-500 dark:to-indigo-500 uppercase">
       {title}
     </h1>
   </div>

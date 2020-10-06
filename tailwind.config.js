@@ -16,7 +16,8 @@ module.exports = {
         xxs: "0.6875rem",
       },
       fontFamily: {
-        mont: ["Montserrat", ...defaultTheme.fontFamily.sans],
+        arvo: ["Arvo", ...defaultTheme.fontFamily.sans],
+        rose: ["Rosario", ...defaultTheme.fontFamily.sans],
       },
       spacing: {
         7: "1.75rem",

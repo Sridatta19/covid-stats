@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react"
 import { navigate } from "gatsby"
 
 import { Downtrend, Uptrend, SortAcs, SortDesc } from "@components/icons"
-import { TOTAL_KEY_MAPPINGS, LABEL_MAPPINGS, STROKES } from "@utils/constants"
+import {
+  TOTAL_KEY_MAPPINGS,
+  LABEL_MAPPINGS,
+  STROKES,
+  KEY_BUTTON_GRADIENTS,
+} from "@utils/constants"
 import { formatDate, transformKeys, filterPredicate } from "@utils/fn-utils"
 import DISTRICT_CODES from "@lib/districtNames"
 import stateCodes from "@lib/stateCodes"
@@ -146,8 +151,7 @@ const TableBody = ({ stateId, dataKey, data }) => {
               {el.code}
               {el.date === formatDate(new Date()) && (
                 <p
-                  className="text-xxs md:text-sm"
-                  style={{ color: STROKES[dataKey] }}
+                  className={`font-mono text-xxs md:text-sm bg-clip-text text-transparent bg-gradient-to-r ${KEY_BUTTON_GRADIENTS[dataKey]}`}
                 >{`${el[dataKey] > 0 ? "+" : ""}${el[dataKey]}`}</p>
               )}
             </td>
@@ -162,7 +166,7 @@ const TableBody = ({ stateId, dataKey, data }) => {
             <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
               {new Intl.NumberFormat("en-IN").format(el.pw)}
             </td>
-            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-sm sm:text-lg leading-5 text-secondary">
+            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-sm sm:text-lg font-rose font-medium leading-5 text-secondary">
               <span
                 className={`${
                   el.average < 0 ? "text-green-500" : "text-red-500"
@@ -170,7 +174,7 @@ const TableBody = ({ stateId, dataKey, data }) => {
               >
                 {`${el.average > 0 ? "+" : ""}${el.average}%`}
               </span>
-              {el.lw < el.pw ? <Downtrend /> : <Uptrend />}
+              {el.average < 0 ? <Downtrend /> : <Uptrend />}
             </td>
           </tr>
         )

@@ -9,4 +9,7 @@ import Wrapper from "./wrapPageElement"
 import "./src/styles/globals.css"
 import "./src/styles/mapbox-styles.css"
 
+require("typeface-arvo")
+require("typeface-rosario")
+
 export const wrapPageElement = Wrapper

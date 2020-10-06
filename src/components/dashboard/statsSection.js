@@ -1,6 +1,5 @@
 import React from "react"
 import { PropTypes } from "prop-types"
-import { InfoIcon } from "@components/icons"
 
 import FadeContainer from "@components/fadeContainer"
 import {
@@ -28,11 +27,12 @@ const StatsSection = ({ data, dataKey }) => {
         <RecentInfo dataKey={dataKey} data={data} />
         <TrendLine dataKey={dataKey} data={data} />
       </FadeContainer>
-      <div className="col-span-4 flex justify-center">
-        <InfoIcon />
-        <p className="text-xxs md:text-xs text-tertiary">
+      <div className="mt-1 col-span-4 grid grid-cols-4 items-center">
+        <div className="h-2 bg-gradient-to-r from-gray-100 dark:from-gray-700 to-orange-400 dark:to-yellow-200 block"></div>
+        <p className="text-xxs md:text-xs text-tertiary font-medium col-span-2">
           {`${TREND_DAYS} day change uses 7-day averages`}
         </p>
+        <div className="h-2 bg-gradient-to-l from-gray-100 dark:from-gray-700 to-orange-400 dark:to-yellow-200 block"></div>
       </div>
     </div>
   )
@@ -40,7 +40,9 @@ const StatsSection = ({ data, dataKey }) => {
 
 const TotalInfo = ({ data, dataKey }) => (
   <>
-    <p className="text-xs text-tertiary truncate">{TOTAL_MAPPINGS[dataKey]}</p>
+    <p className="text-xs text-tertiary font-medium truncate">
+      {TOTAL_MAPPINGS[dataKey]}
+    </p>
     <span className="highlight-color">
       {new Intl.NumberFormat("en-IN").format(
         Number(data[data.length - 1][TOTAL_KEY_MAPPINGS[dataKey]])
@@ -51,7 +53,7 @@ const TotalInfo = ({ data, dataKey }) => (
 
 const DailyInfo = ({ data, dataKey }) => (
   <>
-    <p className="text-xs text-tertiary">
+    <p className="text-xs text-tertiary font-medium">
       {getShortMonth(data[data.length - 1].date)}
     </p>
     <span className="highlight-color">
@@ -66,7 +68,7 @@ const RecentInfo = ({ data, dataKey }) => {
   const avg = calculateAverage(data, dataKey)
   return (
     <>
-      <p className="text-xs text-tertiary">{`Last ${TREND_DAYS} Days`}</p>
+      <p className="text-xs text-tertiary font-medium">{`Last ${TREND_DAYS} Days`}</p>
       <span className="highlight-color">{`${avg > 0 ? "+" : ""}${avg}%`}</span>
     </>
   )
@@ -77,7 +79,7 @@ const TrendLine = ({ data, dataKey }) => {
   const lineData = data.filter(entry => trendDates[entry.date.trim()])
   return (
     <div className="h-5 w-4/5 md:w-24">
-      <p className="text-xs text-tertiary">Trend</p>
+      <p className="text-xs text-tertiary font-medium">Trend</p>
       <Linechart
         gradientColors={KEY_GRADIENTS[dataKey]}
         data={lineData.slice(0, lineData.length - 1)}
