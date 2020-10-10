@@ -37,7 +37,7 @@ const Dashboard = ({ title, stateId, data, childData }) => {
       {childData && displayMode && (
         <ToggleDisplayMode setMode={setMode} displayMode={displayMode} />
       )}
-      <Header title={title} />
+      <Header title={title} isNotDistrict={!!childData} />
       <div
         className="lg:grid lg:grid-cols-3 gap-x-3 mt-4"
         style={{ perspective: 1200 }}
@@ -114,15 +114,16 @@ Dashboard.propTypes = {
   childData: validateChildData,
 }
 
-const Header = ({ title }) => (
-  <div className="mx-12 text-center">
-    <h1 className="text-2xl sm:text-4xl font-arvo font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 dark:from-yellow-300 via-green-500 dark:via-pink-500 to-yellow-500 dark:to-indigo-500 uppercase">
+const Header = ({ title, isNotDistrict }) => (
+  <div className={`${isNotDistrict ? "mx-4" : "mx-14"} text-center`}>
+    <h1 className="tracking-wider text-2xl sm:text-4xl font-arvo font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 dark:from-yellow-200 via-green-500 dark:via-green-400 to-yellow-500 dark:to-orange-500 uppercase">
       {title}
     </h1>
   </div>
 )
 
 Header.propTypes = {
+  isNotDistrict: PropTypes.bool,
   title: PropTypes.string.isRequired,
 }
 

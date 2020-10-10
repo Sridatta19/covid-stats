@@ -3,6 +3,7 @@ import { PropTypes } from "prop-types"
 
 import FadeContainer from "@components/fadeContainer"
 import {
+  fmt,
   getShortMonth,
   retrieveRecentDatesFormatted,
   calculateAverage,
@@ -27,12 +28,12 @@ const StatsSection = ({ data, dataKey }) => {
         <RecentInfo dataKey={dataKey} data={data} />
         <TrendLine dataKey={dataKey} data={data} />
       </FadeContainer>
-      <div className="mt-1 col-span-4 grid grid-cols-4 items-center">
-        <div className="h-2 bg-gradient-to-r from-gray-100 dark:from-gray-700 to-orange-400 dark:to-yellow-200 block"></div>
-        <p className="text-xxs md:text-xs text-tertiary font-medium col-span-2">
+      <div className="mt-1 col-span-4 grid grid-cols-4 items-center sm:mx-32 lg:mx-4">
+        <div className="h-2 rounded-sm bg-gradient-to-r from-gray-100 dark:from-gray-700 to-orange-500 dark:to-yellow-200 block"></div>
+        <p className="text-xxs sm:text-xs lg:text-sm text-tertiary font-medium col-span-2">
           {`${TREND_DAYS} day change uses 7-day averages`}
         </p>
-        <div className="h-2 bg-gradient-to-l from-gray-100 dark:from-gray-700 to-orange-400 dark:to-yellow-200 block"></div>
+        <div className="h-2 rounded-sm bg-gradient-to-l from-gray-100 dark:from-gray-700 to-orange-500 dark:to-yellow-200 block"></div>
       </div>
     </div>
   )
@@ -44,9 +45,7 @@ const TotalInfo = ({ data, dataKey }) => (
       {TOTAL_MAPPINGS[dataKey]}
     </p>
     <span className="highlight-color">
-      {new Intl.NumberFormat("en-IN").format(
-        Number(data[data.length - 1][TOTAL_KEY_MAPPINGS[dataKey]])
-      )}
+      {fmt(Number(data[data.length - 1][TOTAL_KEY_MAPPINGS[dataKey]]))}
     </span>
   </>
 )
@@ -57,9 +56,7 @@ const DailyInfo = ({ data, dataKey }) => (
       {getShortMonth(data[data.length - 1].date)}
     </p>
     <span className="highlight-color">
-      {new Intl.NumberFormat("en-IN").format(
-        Number(data[data.length - 1][dataKey])
-      )}
+      {fmt(Number(data[data.length - 1][dataKey]))}
     </span>
   </>
 )

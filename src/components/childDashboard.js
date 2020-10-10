@@ -61,7 +61,7 @@ const ChildDashboard = ({ childData, dataKey, stateId }) => {
   return (
     <div>
       <Subtitle dataKey={dataKey} />
-      <div className="mt-4 mx-4 grid grid-cols-4 gap-4 text-blue text-sm md:text-lg font-rose font-bold">
+      <div className="mt-4 mx-4 grid grid-cols-4 gap-x-4 gap-y-2.5 md:gap-y-3 text-blue text-sm md:text-lg font-rose font-bold">
         <AnimatePresence>
           {filtered.slice(0, length).map(({ key: childKey, data }, index) => {
             const label = getDistrictId(childKey)

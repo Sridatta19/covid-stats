@@ -5,7 +5,7 @@ import { TOTAL_KEY_MAPPINGS, KEY_PALETTES } from "@utils/constants"
 import { getPopupDescription } from "./map-utils"
 import DISTRICT_CODES from "@lib/districtNames"
 import stateCodes from "@lib/stateCodes"
-import { transformKeys } from "@utils/fn-utils"
+import { fmt, transformKeys } from "@utils/fn-utils"
 
 const STATE_CODES = transformKeys(stateCodes, s => s.toLowerCase())
 
@@ -20,6 +20,7 @@ const MapboxComponent = ({ stateId, dataKey, stepFn, zoomMap, centerMap }) => {
       container: mapEl.current,
       style: "mapbox://styles/sridatta7/ckf41otga185y19s7k8q8fi1z",
       zoom: zoomMap[stateId],
+      minZoom: zoomMap[stateId],
       center: centerMap[stateId],
     })
     var hoveredStateId = null
@@ -121,12 +122,10 @@ const MapboxComponent = ({ stateId, dataKey, stepFn, zoomMap, centerMap }) => {
             stateId === "tt" || stateId === "dl"
               ? STATE_CODES[id.toLowerCase()]
               : getDistrictName(id)
-          const totalCases = `${new Intl.NumberFormat("en-IN").format(
+          const totalCases = `${fmt(
             e.features[0].properties[TOTAL_KEY_MAPPINGS[dataKey]]
           )}`
-          const cases = `${new Intl.NumberFormat("en-IN").format(
-            e.features[0].properties[dataKey]
-          )}`
+          const cases = `${fmt(e.features[0].properties[dataKey])}`
           const { lng, lat } = e.lngLat
           popup
             .setLngLat([lng, lat])
@@ -180,11 +179,9 @@ const MapboxComponent = ({ stateId, dataKey, stepFn, zoomMap, centerMap }) => {
               ></div>
             ))}
           </div>
-          <div className="flex justify-between min-w-full h-4 text-xxs lg:text-sm font-serif text-primary">
+          <div className="flex justify-between min-w-full h-4 text-xxs sm:text-xs lg:text-sm font-serif text-primary">
             {[0, 0.3, 0.5, 0.7, 0.9, 1].map(val => (
-              <p key={val}>
-                {new Intl.NumberFormat("en-IN").format(stepFn(val))}
-              </p>
+              <p key={val}>{fmt(stepFn(val))}</p>
             ))}
           </div>
         </div>

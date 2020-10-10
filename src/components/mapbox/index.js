@@ -3,8 +3,7 @@ import { quantile } from "d3-array"
 import { PropTypes } from "prop-types"
 import Loadable from "@loadable/component"
 
-import { transformKeys, filterPredicate } from "@utils/fn-utils"
-import stateCodes from "@lib/stateCodes"
+import { filterPredicate } from "@utils/fn-utils"
 import { TOTAL_KEY_MAPPINGS } from "@utils/constants"
 import { StatNodeType, validateChildData } from "@utils/type-definitions"
 
@@ -15,16 +14,12 @@ import { COORD_CENTER_MAP } from "@utils/map/sm-centers"
 
 const MapboxComponent = Loadable(() => import("@components/mapbox/map-impl"))
 
-const STATE_CODES = transformKeys(stateCodes, s => s.toLowerCase())
-
 const Mapbox = ({ dataKey, stateId, data, childData, isMedium }) => {
   let modifiedData = Object.keys(childData).reduce((acc, childKey) => {
-    if (filterPredicate(childKey)) {
-      const valueKey =
-        stateId === "tt" ? STATE_CODES[childKey.toLowerCase()] : childKey
+    if (childKey !== "TT" && filterPredicate(childKey)) {
       return {
         ...acc,
-        [valueKey]:
+        [childKey]:
           childData[childKey].data[childData[childKey].data.length - 1],
       }
     }

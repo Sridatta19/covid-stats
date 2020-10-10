@@ -31,11 +31,14 @@ const StateTemplate = ({
   )
   useEffect(() => {
     if (apiResult) {
+      // Calculate Latest 'State' Entry
       const entry = getStateEntry(data, apiResult, pageContext.slug)
       if (entry) {
+        // Append Latest Entry Fetched by API
         setData(d => d.concat(entry))
       }
     }
+    // Append Latest Entry of Each District to Child Data
     const newChildData = Object.keys(childData).reduce((acc, code) => {
       const districtEntry = getDistrictEntry(
         childData[code].data,
@@ -43,7 +46,6 @@ const StateTemplate = ({
         pageContext.slug,
         code
       )
-      console.log(districtEntry)
       return {
         ...acc,
         [code]: {

@@ -61,9 +61,9 @@ export const KEY_PALETTES = {
 }
 
 export const KEY_GRADIENTS = {
-  dc: ["#00c6ff", "#0072ff"],
+  dc: ["#4884EE", "#06BCFB"],
   dd: ["#f12711", "#f5af19"],
-  dr: ["#DCE35B", "#45B649"],
+  dr: ["#F4D03F", "#16A085"],
 }
 
 export const STROKES = {
@@ -73,7 +73,13 @@ export const STROKES = {
 }
 
 export const KEY_BUTTON_GRADIENTS = {
-  dc: "from-blue-600 to-blue-400",
-  dd: "from-red-500 to-orange-400",
-  dr: "from-green-600 to-yellow-400",
+  dc: "from-blue-400 to-blue-500",
+  dd: "from-red-500 to-orange-300",
+  dr: "from-green-500 to-yellow-400",
+}
+
+export const COUNT_GRADIENTS = {
+  dc: "from-blue-500 to-blue-600 dark:from-blue-300 dark:to-blue-400",
+  dd: "from-red-500 to-orange-500 dark:from-red-400 dark:to-orange-300",
+  dr: "from-green-500 dark:from-green-400 to-yellow-500 dark:to-yellow-400",
 }

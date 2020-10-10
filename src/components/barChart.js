@@ -12,9 +12,9 @@ import {
   TOTAL_MAPPINGS,
   TOTAL_KEY_MAPPINGS,
 } from "@utils/constants"
-import { getShortMonth } from "@utils/fn-utils"
+import { fmt, getShortMonth } from "@utils/fn-utils"
 
-const BarChart = ({ data, dataKey, gradientColors }) => {
+const BarChart = ({ data, dataKey }) => {
   const gradientId = useUniqueId("Histogram-gradient")
   const [ref, dimensions] = useChartDimensions({
     marginTop: 1,
@@ -105,7 +105,7 @@ const BarChart = ({ data, dataKey, gradientColors }) => {
           y={yScale(pQuantile) - 10}
           className="text-xs font-serif font-bold"
         >
-          {pQuantile}
+          {fmt(pQuantile)}
         </text>
         <line
           x1={dimensions.marginLeft}

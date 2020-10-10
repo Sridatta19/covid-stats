@@ -6,15 +6,12 @@ const FoldWrapper = ({ children }) => {
     <AnimatePresence>
       {React.Children.map(children, (element, index) => (
         <motion.div
-          animate={{ rotateY: 0, opacity: 1 }}
-          style={{ originX: 0, originY: 0.5 }}
-          initial={{ opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          initial={{ y: -75, opacity: 0 }}
           transition={{
-            from: 90,
             duration: 1,
-            type: "tween",
-            ease: "anticipate",
-            delay: 0.2 + index * 0.2,
+            ease: [0.445, 0.05, 0.55, 0.95],
+            delay: 0.3 + index * 0.4,
           }}
         >
           {element}

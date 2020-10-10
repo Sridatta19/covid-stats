@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 
 import Dashboard from "@components/dashboard"
-import { getCountryEntry, getEntryDate, getStateEntry } from "@utils/fn-utils"
+import { getCountryEntry, getStateEntry } from "@utils/fn-utils"
 
 const edgeReducer = (acc, elem) => ({
   ...acc,
@@ -26,14 +26,15 @@ const IndexPage = ({
       // Calculate Latest 'TT' Entry
       const entry = getCountryEntry(data, apiResult)
       if (entry) {
-        if (getEntryDate(apiResult.TT) !== data[data.length - 1].date) {
+        if (entry.date === data[data.length - 1].date) {
+          // Merge Latest Entry Fetched by API
+          setData(d => d.slice(0, d.length - 1).concat(entry))
+        } else {
           // Append Latest Entry Fetched by API
           setData(d => d.concat(entry))
-        } else {
-          // Merge Latest Entry Fetched by API
-          setData(d => d.slice(0, d.length - 2).concat(entry))
         }
       }
+      // Append Latest Entry of Each State to Child Data
       const newChildData = Object.keys(childData).reduce((acc, code) => {
         const stateEntry = getStateEntry(childData[code].data, apiResult, code)
         return {

@@ -133,3 +133,5 @@ export const calculateAverage = (data, key, days = 21) => {
     ? 100
     : Math.ceil(((lw - pw) / pw) * 100)
 }
+
+export const fmt = num => new Intl.NumberFormat("en-IN").format(num)

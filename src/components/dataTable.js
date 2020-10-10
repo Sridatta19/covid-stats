@@ -5,10 +5,14 @@ import { Downtrend, Uptrend, SortAcs, SortDesc } from "@components/icons"
 import {
   TOTAL_KEY_MAPPINGS,
   LABEL_MAPPINGS,
-  STROKES,
-  KEY_BUTTON_GRADIENTS,
+  COUNT_GRADIENTS,
 } from "@utils/constants"
-import { formatDate, transformKeys, filterPredicate } from "@utils/fn-utils"
+import {
+  fmt,
+  formatDate,
+  transformKeys,
+  filterPredicate,
+} from "@utils/fn-utils"
 import DISTRICT_CODES from "@lib/districtNames"
 import stateCodes from "@lib/stateCodes"
 
@@ -65,6 +69,8 @@ const DataTable = ({ stateId, childData, dataKey }) => {
   parsedData.sort((a, b) =>
     isAscSort ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]
   )
+  const today = formatDate(new Date())
+  const noTodayData = parsedData.map(e => e.date).every(dt => dt !== today)
   return (
     <div className="flex flex-col lg:rounded-xl border dark-border overflow-hidden">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -78,10 +84,10 @@ const DataTable = ({ stateId, childData, dataKey }) => {
                   </th>
                   <TableHead
                     sortKey={sortKey}
-                    label="Totals"
-                    isAscSort={isAscSort}
-                    columnKey={TOTAL_KEY_MAPPINGS[dataKey]}
                     changeSort={() => changeSort(TOTAL_KEY_MAPPINGS[dataKey])}
+                    isAscSort={isAscSort}
+                    label="Totals"
+                    columnKey={TOTAL_KEY_MAPPINGS[dataKey]}
                   />
                   <TableHead
                     sortKey={sortKey}
@@ -110,6 +116,7 @@ const DataTable = ({ stateId, childData, dataKey }) => {
                 dataKey={dataKey}
                 data={parsedData}
                 stateId={stateId}
+                noTodayData={noTodayData}
               />
             </table>
           </div>
@@ -126,7 +133,7 @@ const TableHead = ({ sortKey, isAscSort, columnKey, label, changeSort }) => (
   </th>
 )
 
-const TableBody = ({ stateId, dataKey, data }) => {
+const TableBody = ({ stateId, dataKey, data, noTodayData }) => {
   const rowClick = code => {
     if (stateCodes[code]) {
       navigate(`/state/${code.toLowerCase()}`)
@@ -146,27 +153,25 @@ const TableBody = ({ stateId, dataKey, data }) => {
             <td
               role="button"
               onClick={() => rowClick(el.code)}
-              className="px-2 md:px-4 py-3 break-normal cursor-pointer whitespace-pre-wrap text-xxs sm:text-sm leading-5 font-medium text-primary"
+              className="px-2 md:px-4 py-3 break-normal cursor-pointer whitespace-pre-wrap text-xs sm:text-sm leading-5 text-primary"
             >
               {el.code}
-              {el.date === formatDate(new Date()) && (
+              {(el.date === formatDate(new Date()) || noTodayData) && (
                 <p
-                  className={`font-mono text-xxs md:text-sm bg-clip-text text-transparent bg-gradient-to-r ${KEY_BUTTON_GRADIENTS[dataKey]}`}
-                >{`${el[dataKey] > 0 ? "+" : ""}${el[dataKey]}`}</p>
+                  className={`font-serif font-medium text-xs sm:text-sm lg:text-base bg-clip-text text-transparent bg-gradient-to-r ${COUNT_GRADIENTS[dataKey]}`}
+                >{`${el[dataKey] > 0 ? "+" : ""}${fmt(el[dataKey])}`}</p>
               )}
             </td>
             <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
-              {new Intl.NumberFormat("en-IN").format(
-                el[TOTAL_KEY_MAPPINGS[dataKey]]
-              )}
+              {fmt(el[TOTAL_KEY_MAPPINGS[dataKey]])}
             </td>
             <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
-              {new Intl.NumberFormat("en-IN").format(el.lw)}
+              {fmt(el.lw)}
             </td>
             <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
-              {new Intl.NumberFormat("en-IN").format(el.pw)}
+              {fmt(el.pw)}
             </td>
-            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-sm sm:text-lg font-rose font-medium leading-5 text-secondary">
+            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-sm sm:text-lg font-rose tracking-wide font-medium leading-5 text-secondary">
               <span
                 className={`${
                   el.average < 0 ? "text-green-500" : "text-red-500"

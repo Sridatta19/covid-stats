@@ -31,9 +31,22 @@ const Layout = ({ children, path }) => {
       features={[ExitFeature, AnimationFeature, AnimateLayoutFeature]}
     >
       <ThemeSwitch toggleTheme={toggleTheme} isDark={isDark} />
-      <div className="sm:mx-12 md:mx-20 lg:mx-6 mt-4 lg:mt-8 pb-10">
+      <div className="sm:mx-12 md:mx-20 lg:mx-6 mt-4 lg:mt-8">
         {React.cloneElement(children, { apiResult })}
       </div>
+      {path === "/" && (
+        <p className="my-4 text-xs sm:text-sm lg:text-base text-center text-primary">
+          Made with <span aria-label="Love">❤️</span> by
+          <a
+            rel="noopener"
+            target="_blank"
+            className="ml-1 text-blue-600 dark:text-blue-400 underline"
+            href="https://github.com/Sridatta19/covid-stats"
+          >
+            Sridatta
+          </a>
+        </p>
+      )}
     </MotionConfig>
   )
 }
