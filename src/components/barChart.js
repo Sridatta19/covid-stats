@@ -133,9 +133,9 @@ const BarChart = ({ data, dataKey }) => {
           <p className="text-gray-900 text-xs md:text-sm font-serif font-bold">
             {getShortMonth(closest.date)}
           </p>
-          <p className="text-gray-800 text-xs font-medium">{`${KEY_MAPPINGS[dataKey]}: ${closest[dataKey]}`}</p>
+          <p className="text-gray-800 text-xs font-medium">{`${KEY_MAPPINGS[dataKey]}: ${fmt(closest[dataKey])}`}</p>
           <p className="text-gray-700 text-xs">{`${TOTAL_MAPPINGS[dataKey]}: ${
-            closest[TOTAL_KEY_MAPPINGS[dataKey]]
+            fmt(closest[TOTAL_KEY_MAPPINGS[dataKey]])
           }`}</p>
         </div>
       )}
