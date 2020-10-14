@@ -172,14 +172,21 @@ const TableBody = ({ stateId, dataKey, data, noTodayData }) => {
               {fmt(el.pw)}
             </td>
             <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-sm sm:text-lg font-rose tracking-wide font-medium leading-5 text-secondary">
-              <span
-                className={`${
-                  el.average < 0 ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {`${el.average > 0 ? "+" : ""}${el.average}%`}
-              </span>
-              {el.average < 0 ? <Downtrend /> : <Uptrend />}
+              {el.average < 0 ? (
+                <>
+                  <span className="text-green-500">{`${el.average}%`}</span>
+                  <Downtrend />
+                </>
+              ) : el.average > 0 ? (
+                <>
+                  <span className="text-red-500">{`+${el.average}%`}</span>
+                  <Uptrend />
+                </>
+              ) : (
+                <span className="text-4xl lg:text-5xl text-center text-secondary">
+                  ~
+                </span>
+              )}
             </td>
           </tr>
         )
