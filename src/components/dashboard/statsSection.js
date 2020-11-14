@@ -75,7 +75,7 @@ const TrendLine = ({ data, dataKey }) => {
   const trendDates = retrieveRecentDatesFormatted(TREND_DAYS)
   const lineData = data.filter(entry => trendDates[entry.date.trim()])
   return (
-    <div className="h-5 w-4/5 md:w-24">
+    <div className="h-12 w-4/5 md:w-24">
       <p className="text-xs text-tertiary font-medium">Trend</p>
       <Linechart
         gradientColors={KEY_GRADIENTS[dataKey]}

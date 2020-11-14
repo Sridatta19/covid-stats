@@ -10,11 +10,12 @@ import {
 const ToggleDataKey = ({ dataKey, setKey }) => {
   return (
     <AnimateSharedLayout>
-      <div className="mt-10 lg:mt-6 mb-2 flex items-center justify-center">
+      <div className="mt-10 lg:mt-7 mb-2 flex items-center justify-center">
         <span className="relative z-0 inline-flex shadow-sm rounded-md">
           {Object.keys(LABEL_MAPPINGS).map((buttonKey, i) => (
             <Button
               key={i}
+              index={i}
               setKey={setKey}
               dataKey={dataKey}
               buttonKey={buttonKey}
@@ -26,13 +27,13 @@ const ToggleDataKey = ({ dataKey, setKey }) => {
   )
 }
 
-const Button = ({ dataKey, setKey, buttonKey }) => {
+const Button = ({ index, dataKey, setKey, buttonKey }) => {
   const IconButton = KEY_BUTTONS[buttonKey]
   return (
     <button
-      aria-label={LABEL_MAPPINGS[buttonKey]}
       onClick={() => setKey(buttonKey)}
-      className={`${KEY_BUTTON_CLASSES[buttonKey]} relative flex justify-center items-center w-24 md:w-36 py-2.5 md:py-3 border border-gray-400 cursor-pointer bg-transparent text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150`}
+      aria-label={LABEL_MAPPINGS[buttonKey]}
+      className={`${KEY_BUTTON_CLASSES[buttonKey]} relative flex justify-center items-center w-24 md:w-36 py-2.5 md:py-3 border border-gray-400 cursor-pointer bg-transparent text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-red active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150`}
     >
       {dataKey !== buttonKey && (
         <motion.span

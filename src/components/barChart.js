@@ -124,19 +124,18 @@ const BarChart = ({ data, dataKey }) => {
               xScale(closest.index) -
               (closest.index > (data.length * 3) / 4 ? 120 : 0)
             }px`,
-            top: `${
-              yScale(closest[dataKey]) -
-              (closest.index < (data.length * 3) / 4 ? 50 : 30)
-            }px`,
+            top: `${yScale(closest[dataKey]) - 50}px`,
           }}
         >
           <p className="text-gray-900 text-xs md:text-sm font-serif font-bold">
             {getShortMonth(closest.date)}
           </p>
-          <p className="text-gray-800 text-xs font-medium">{`${KEY_MAPPINGS[dataKey]}: ${fmt(closest[dataKey])}`}</p>
-          <p className="text-gray-700 text-xs">{`${TOTAL_MAPPINGS[dataKey]}: ${
-            fmt(closest[TOTAL_KEY_MAPPINGS[dataKey]])
-          }`}</p>
+          <p className="text-gray-800 text-xs font-medium">{`${
+            KEY_MAPPINGS[dataKey]
+          }: ${fmt(closest[dataKey])}`}</p>
+          <p className="text-gray-700 text-xs">{`${
+            TOTAL_MAPPINGS[dataKey]
+          }: ${fmt(closest[TOTAL_KEY_MAPPINGS[dataKey]])}`}</p>
         </div>
       )}
     </div>

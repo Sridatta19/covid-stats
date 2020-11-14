@@ -116,7 +116,7 @@ Dashboard.propTypes = {
 
 const Header = ({ title, isNotDistrict }) => (
   <div className={`${isNotDistrict ? "mx-4" : "mx-14"} text-center`}>
-    <h1 className="tracking-wider text-2xl sm:text-4xl font-arvo font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 dark:from-yellow-200 via-green-500 dark:via-green-400 to-yellow-500 dark:to-orange-500 uppercase">
+    <h1 className="tracking-wider inline-block text-2xl sm:text-4xl font-arvo font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 dark:from-yellow-200 via-green-500 dark:via-green-400 to-yellow-500 dark:to-orange-500 uppercase">
       {title}
     </h1>
   </div>

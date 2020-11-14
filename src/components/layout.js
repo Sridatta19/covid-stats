@@ -36,7 +36,11 @@ const Layout = ({ children, path }) => {
       </div>
       {path === "/" && (
         <p className="my-4 text-xs sm:text-sm lg:text-base text-center text-primary">
-          Made with <span aria-label="Love">❤️</span> by
+          Made with{" "}
+          <span role="img" aria-label="Love">
+            ❤️
+          </span>{" "}
+          by
           <a
             rel="noopener"
             target="_blank"

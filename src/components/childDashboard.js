@@ -73,7 +73,8 @@ const ChildDashboard = ({ childData, dataKey, stateId }) => {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="justify-self-center flex items-baseline cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 hover:opacity-75 focus:outline-none focus:border-teal-700 dark:focus:border-gray-50"
+                role="button"
+                className="justify-self-center flex items-baseline cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 hover:opacity-75 focus:outline-none focus:shadow-outline-blue focus:border-teal-700 dark:focus:border-gray-50"
                 onClick={() => {
                   if (stateId && stateId !== "tt") {
                     navigate(
