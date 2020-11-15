@@ -98,8 +98,8 @@ export const getCountryEntry = (filtered, response) => {
 
 export const getEntryDate = entry => {
   const dateStr =
-    safeGet(["meta", "last_updated"], entry) ||
-    safeGet(["meta", "tested", "last_updated"], entry)
+    safeGet(["meta", "tested", "last_updated"], entry) ||
+    safeGet(["meta", "last_updated"], entry)
   const date = dateStr ? new Date(dateStr) : new Date()
   return getFormattedDate(date)
 }
