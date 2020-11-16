@@ -91,7 +91,9 @@ export const getStateEntry = (filtered, response, stateId) => {
 export const getCountryEntry = (filtered, response) => {
   const deltaConfirmed = safeGet(["TT", "delta", "confirmed"], response)
   if (deltaConfirmed) {
-    return prepareEntry(response.TT, getEntryDate(response.TT))
+    const dateStr = safeGet(["meta", "last_updated"], response.TT)
+    const date = dateStr ? new Date(dateStr) : new Date()
+    return prepareEntry(response.TT, getFormattedDate(date))
   }
   return null
 }
