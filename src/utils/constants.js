@@ -74,12 +74,12 @@ export const STROKES = {
 
 export const KEY_BUTTON_GRADIENTS = {
   dc: "from-blue-400 to-blue-500",
-  dd: "from-red-500 to-orange-300",
+  dd: "from-red-500 to-red-300",
   dr: "from-green-500 to-yellow-400",
 }
 
 export const COUNT_GRADIENTS = {
   dc: "from-blue-500 to-blue-600 dark:from-blue-300 dark:to-blue-400",
-  dd: "from-red-500 to-orange-500 dark:from-red-400 dark:to-orange-300",
+  dd: "from-red-500 to-red-500 dark:from-red-400 dark:to-red-300",
   dr: "from-green-500 dark:from-green-400 to-yellow-500 dark:to-yellow-400",
 }

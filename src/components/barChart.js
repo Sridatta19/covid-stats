@@ -25,6 +25,7 @@ const BarChart = ({ data, dataKey }) => {
   if (!dimensions.width || !dimensions.height) {
     return <div ref={ref} className="flex-1 h-48 lg:h-64 relative"></div>
   }
+  const minimumBarHeight = 20
   const xScale = scaleBand()
     .domain(range(data.length))
     .range([dimensions.marginLeft, dimensions.width - dimensions.marginRight])
@@ -72,7 +73,7 @@ const BarChart = ({ data, dataKey }) => {
                 x={xScale(i)}
                 y={yScale(d[dataKey])}
                 width={xScale.bandwidth()}
-                height={yScale(0) - yScale(d[dataKey])}
+                height={yScale(0) - yScale(d[dataKey]) + minimumBarHeight}
               />
             )
           })}
@@ -80,7 +81,7 @@ const BarChart = ({ data, dataKey }) => {
         <g
           className="Axis AxisHorizontal"
           transform={`translate(0, ${
-            dimensions.boundedHeight + dimensions.marginTop
+            dimensions.boundedHeight + dimensions.marginTop + minimumBarHeight
           })`}
         >
           <line
@@ -118,7 +119,7 @@ const BarChart = ({ data, dataKey }) => {
       </Chart>
       {closest && (
         <div
-          className="absolute bg-white p-2 rounded-sm shadow-2xl whitespace-no-wrap border border-gray-300"
+          className="absolute bg-white p-2 rounded-sm shadow-2xl whitespace-nowrap border border-gray-300"
           style={{
             left: `${
               xScale(closest.index) -

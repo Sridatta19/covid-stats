@@ -7,15 +7,15 @@
 /* VARIABLES ----- END */
 
 .dark-bg {
-  @apply bg-gray-700 dark:bg-gray-100;
+  @apply bg-gray-700 dark:bg-gray-100 transition-colors duration-500;
 }
 
 .dark-bg-2 {
-  @apply bg-gray-200 dark:bg-gray-500 text-gray-700 dark:text-gray-200;
+  @apply bg-gray-200 dark:bg-gray-500 text-gray-700 dark:text-gray-200 transition-colors duration-500;
 }
 
 .theme-bg {
-  @apply bg-gray-50 dark:bg-gray-700;
+  @apply bg-gray-50 dark:bg-gray-700 transition-colors duration-500;
 }
 
 .text-light {
@@ -23,11 +23,11 @@
 }
 
 .highlight-color {
-  @apply md:text-xl text-orange-600 dark:text-yellow-300 font-rose font-bold tracking-wide;
+  @apply md:text-xl text-red-600 dark:text-yellow-300 font-rose font-bold tracking-wide;
 }
 
 body {
-  @apply bg-gray-50 dark:bg-gray-700 m-0;
+  @apply bg-gray-50 dark:bg-gray-700 m-0 transition-colors duration-500;
   background-image: url(../../assets/bubbles.svg);
 }
 
@@ -72,7 +72,7 @@ html.dark body {
 }
 
 .text-block {
-  @apply bg-white p-1 rounded-sm whitespace-no-wrap;
+  @apply bg-white p-1 rounded-sm whitespace-nowrap;
 }
 
 .mapboxgl-popup {

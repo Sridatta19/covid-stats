@@ -162,16 +162,16 @@ const TableBody = ({ stateId, dataKey, data, noTodayData }) => {
                 >{`${el[dataKey] > 0 ? "+" : ""}${fmt(el[dataKey])}`}</p>
               )}
             </td>
-            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
+            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
               {fmt(el[TOTAL_KEY_MAPPINGS[dataKey]])}
             </td>
-            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
+            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
               {fmt(el.lw)}
             </td>
-            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-xxs sm:text-sm leading-5 text-secondary">
+            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
               {fmt(el.pw)}
             </td>
-            <td className="px-2 md:px-4 py-3 whitespace-no-wrap text-sm sm:text-lg font-rose tracking-wide font-medium leading-5 text-secondary">
+            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-sm sm:text-lg font-rose tracking-wide font-medium leading-5 text-secondary">
               {el.average < 0 ? (
                 <>
                   <span className="text-green-500">{`${el.average}%`}</span>
