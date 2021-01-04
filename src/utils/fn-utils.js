@@ -11,8 +11,9 @@ export const retrieveRecentDatesFormatted = (length = 14) => {
 export const formatDate = dt => {
   const date = new Date(dt)
   const month = date.getMonth() + 1
+  const year = date.getYear() + 1900
   const day = date.getDate()
-  return `2020-${month < 10 ? `0${month}` : month}-${
+  return `${year}-${month < 10 ? `0${month}` : month}-${
     day < 10 ? `0${day}` : day
   }`
 }
