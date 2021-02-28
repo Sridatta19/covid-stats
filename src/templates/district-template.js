@@ -60,7 +60,13 @@ export const pageQuery = graphql`
           name
           district
           data {
-            ...DistrictEntry
+            date
+            dc
+            dd
+            dr
+            tc
+            td
+            tr
           }
         }
       }

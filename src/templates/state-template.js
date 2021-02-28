@@ -79,7 +79,13 @@ export const pageQuery = graphql`
           name
           district
           data {
-            ...DistrictEntry
+            date
+            dc
+            dd
+            dr
+            tc
+            td
+            tr
           }
         }
       }
@@ -89,7 +95,13 @@ export const pageQuery = graphql`
         node {
           id
           data {
-            ...StateEntry
+            date
+            dc
+            dd
+            dr
+            tc
+            td
+            tr
           }
         }
       }

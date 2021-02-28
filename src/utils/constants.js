@@ -18,12 +18,6 @@ export const KEY_MAPPINGS = {
   dr: "New Recovered",
 }
 
-export const SORT_KEY_MAPPINGS = {
-  dc: "gc",
-  dd: "gd",
-  dr: "gr",
-}
-
 export const KEY_BUTTONS = {
   dc: ConfirmedIcon,
   dd: DeceasedIcon,

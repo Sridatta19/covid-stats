@@ -67,7 +67,13 @@ export const query = graphql`
         node {
           id
           data {
-            ...StateEntry
+            date
+            dc
+            dd
+            dr
+            tc
+            td
+            tr
           }
         }
       }
