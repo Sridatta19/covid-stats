@@ -18,6 +18,7 @@ import {
 } from "@utils/constants"
 import Linechart from "@components/linechart"
 import { validateChildData, StatNodeType } from "@utils/type-definitions"
+import { regressionPoly } from "d3-regression"
 
 const StatsSection = ({ data, dataKey }) => {
   return (
@@ -72,16 +73,20 @@ const RecentInfo = ({ data, dataKey }) => {
 }
 
 const TrendLine = ({ data, dataKey }) => {
-  const trendDates = retrieveRecentDatesFormatted(TREND_DAYS)
+  const trendDates = retrieveRecentDatesFormatted(TREND_DAYS + 1)
   const lineData = data.filter(entry => trendDates[entry.date.trim()])
+  const quad = regressionPoly()
+    .x(dateAccessor)
+    .y(d => d[dataKey])
+    .order(3)
   return (
     <div className="h-12 w-4/5 md:w-24">
       <p className="text-xs text-tertiary font-medium">Trend</p>
       <Linechart
         gradientColors={KEY_GRADIENTS[dataKey]}
-        data={lineData.slice(0, lineData.length - 1)}
-        xAccessor={dateAccessor}
-        yAccessor={d => d[dataKey]}
+        data={quad(lineData.slice(0, lineData.length - 2))}
+        xAccessor={d => d[0]}
+        yAccessor={d => d[1]}
         yAccessorKey={dataKey}
         label="Confirmed"
         stroke={STROKES[dataKey]}
