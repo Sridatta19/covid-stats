@@ -13,6 +13,7 @@ import {
   TOTAL_KEY_MAPPINGS,
   TOTAL_MAPPINGS,
   STROKES,
+  LINE_DAYS,
   TREND_DAYS,
   dateAccessor,
 } from "@utils/constants"
@@ -73,15 +74,15 @@ const RecentInfo = ({ data, dataKey }) => {
 }
 
 const TrendLine = ({ data, dataKey }) => {
-  const trendDates = retrieveRecentDatesFormatted(TREND_DAYS + 1)
+  const trendDates = retrieveRecentDatesFormatted(LINE_DAYS)
   const lineData = data.filter(entry => trendDates[entry.date.trim()])
   const quad = regressionPoly()
     .x(dateAccessor)
     .y(d => d[dataKey])
     .order(3)
   return (
-    <div className="h-12 w-4/5 md:w-24">
-      <p className="text-xs text-tertiary font-medium">Trend</p>
+    <div className="h-8 w-4/5 md:w-24">
+      <p className="mb-1 text-xs text-tertiary font-medium">{`${LINE_DAYS} Day Trend`}</p>
       <Linechart
         gradientColors={KEY_GRADIENTS[dataKey]}
         data={quad(lineData.slice(0, lineData.length - 2))}
