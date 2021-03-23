@@ -1,0 +1,27 @@
+{
+  "include": ["./**/*"],
+  "exclude": ["geojson", "maps", "data"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noEmit": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

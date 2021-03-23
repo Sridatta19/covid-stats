@@ -1,0 +1,8 @@
+// export { default as Axis } from "./Axis"
+// export { default as Bars } from "./Bars"
+// export { default as Chart } from "./Chart"
+// export { default as Gradient } from "./Gradient"
+// export { default as Line } from "./Line"
+// export { default as Tooltip } from "./Tooltip"
+export { default as BarChart } from "./BarChart"
+export { default as LineChart } from "./Linechart"

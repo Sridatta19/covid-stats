@@ -1,7 +1,7 @@
 module.exports = {
   purge: {
     mode: "all",
-    content: ["./src/**/*.js"],
+    content: ["./src/**/*.tsx", "./src/**/*.ts"],
     whitelistPatterns: [/mapbox$/],
   },
   darkMode: "class",
