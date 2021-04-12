@@ -72,7 +72,7 @@ export const groupBy = <T, K extends string = string>(
 export const groupByMulti = <T, K extends string = string>(
   groupers: Array<(a: T) => K>,
   list: T[]
-): Record<K, unknown> => {
+): Record<K, any> => {
   if (groupers.length === 0) {
     throw Error
   } else if (groupers.length == 1) {
@@ -83,8 +83,8 @@ export const groupByMulti = <T, K extends string = string>(
       list
     )
     const keys = Object.keys(groupedList) as Array<keyof typeof groupedList>
-    return keys.reduce<Record<string, unknown>>(
-      (acc: Record<string, unknown>, key: K) => {
+    return keys.reduce<Record<string, any>>(
+      (acc: Record<string, any>, key: K) => {
         return {
           ...acc,
           [key]: groupByMulti(groupers, groupedList[key]),
