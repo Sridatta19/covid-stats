@@ -77,7 +77,7 @@ const MainSection = ({
 }: MainSectionProps) => {
   const Container = width > LG_SCREEN ? FoldWrapper : React.Fragment
   return (
-    <Container>
+    <>
       {(!displayMode || displayMode === "list") && childData && (
         <DataTable stateId={stateId} dataKey={dataKey} childData={childData} />
       )}
@@ -112,7 +112,7 @@ const MainSection = ({
           />
         </div>
       )}
-    </Container>
+    </>
   )
 }
 

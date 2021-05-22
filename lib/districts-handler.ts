@@ -1,21 +1,12 @@
 import fs from "fs"
 import DISTRICTS from "./districtNames"
 import STATE_MAPPINGS, { STATE_CODES } from "./stateCodes"
-import {
-  DATA_ENTRY,
-  DistrictAPIEntry,
-  DISTRICT_DATA,
-  DISTRICT_DETAILS,
-} from "./type-definitions"
-import { getStateCodes, getPastDates, groupByMulti, dateReducer } from "./utils"
+import { DATA_ENTRY, DistrictAPIEntry, DISTRICT_DATA } from "./type-definitions"
+import { getStateCodes, getPastDates, groupBy, dateReducer } from "./utils"
 
 const parseDistrictData = (masterData: DistrictAPIEntry[]) =>
-  groupByMulti(
-    [
-      (elem: DistrictAPIEntry) => elem.District,
-      (elem: DistrictAPIEntry) => elem.State,
-      (elem: DistrictAPIEntry) => elem.Date,
-    ],
+  groupBy(
+    (elem: DistrictAPIEntry) => `${elem.Date}_${elem.State}_${elem.District}`,
     masterData
   )
 
@@ -23,7 +14,8 @@ const processDistrictData = () => {
   const { districts: masterData } = JSON.parse(
     fs.readFileSync("districts.json", "utf8")
   )
-  const parsedMasterData: DISTRICT_DETAILS = parseDistrictData(masterData)
+  const parsedMasterData: Record<string, DistrictAPIEntry[]> =
+    parseDistrictData(masterData)
   const districtContentByState: DISTRICT_DATA[] = []
   const CODES = getStateCodes()
   CODES.map(stateCode => {
@@ -50,12 +42,13 @@ const processDistrictData = () => {
 }
 
 const retrieveDistrictsDataByState = (
-  masterData: DISTRICT_DETAILS,
+  masterData: Record<string, DistrictAPIEntry[]>,
   stateCode: STATE_CODES,
   district: string,
   index: number
 ) => {
   const data: DATA_ENTRY[] = []
+  console.log("DISTRICT INFO", stateCode, district)
   getPastDates().forEach(
     dateReducer(data, masterData, [STATE_MAPPINGS[stateCode], district]),
     {}

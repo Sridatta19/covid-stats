@@ -139,7 +139,7 @@ export const getStateCodes = (): STATE_CODES[] => {
   }
   // Hack to convert string keys to State Code Keys
   // Need to figure out if I can add type safety here
-  return (CODES as any) as STATE_CODES[]
+  return CODES as any as STATE_CODES[]
 }
 
 function isValidKey(value: string): value is keyof typeof STATE_MAPPINGS {
@@ -158,34 +158,32 @@ export const getReverseStateMappings = (): { [key: string]: string } => {
   return mappings
 }
 
-export const dateReducer = (
-  data: DATA_ENTRY[],
-  masterData: DETAILS,
-  propertyArray: string[]
-) => (date: string, index: number, dates: string[]) => {
-  // Ignore first Entry
-  if (index === 0) {
-    return
-  }
-  // Check if State data exists for each date
-  const stateData = safeGet(
-    [date, ...propertyArray, "0"],
-    masterData
-  ) as APIEntry
-  const previousData = safeGet(
-    [dates[index - 1], ...propertyArray, "0"],
-    masterData
-  ) as APIEntry
-  if (stateData && previousData) {
-    const { Confirmed } = stateData
-    if (
-      isNotNearDate(date) ||
-      (Confirmed &&
-        Math.abs(Number(Confirmed) - Number(previousData.Confirmed)) !== 0)
-    ) {
-      data.push(createEntry(date, stateData, previousData))
+export const dateReducer =
+  (data: DATA_ENTRY[], masterData: DETAILS, propertyArray: string[]) =>
+  (date: string, index: number, dates: string[]) => {
+    // Ignore first Entry
+    if (index === 0) {
+      return
     }
-  } else if (isNotNearDate(date)) {
-    data.push(createDefaultEntry(date))
+    // Check if State data exists for each date
+    const stateData = safeGet(
+      [[date, ...propertyArray].join("_"), "0"],
+      masterData
+    ) as APIEntry
+    const previousData = safeGet(
+      [[dates[index - 1], ...propertyArray].join("_"), "0"],
+      masterData
+    ) as APIEntry
+    if (stateData && previousData) {
+      const { Confirmed } = stateData
+      if (
+        isNotNearDate(date) ||
+        (Confirmed &&
+          Math.abs(Number(Confirmed) - Number(previousData.Confirmed)) !== 0)
+      ) {
+        data.push(createEntry(date, stateData, previousData))
+      }
+    } else if (isNotNearDate(date)) {
+      data.push(createDefaultEntry(date))
+    }
   }
-}

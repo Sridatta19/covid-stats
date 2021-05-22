@@ -1,24 +1,16 @@
 import fs from "fs"
 import STATE_MAPPINGS, { STATE_CODES } from "./stateCodes"
-import {
-  DATA_ENTRY,
-  StateAPIEntry,
-  STATE_DATA,
-  STATE_DETAILS,
-} from "./type-definitions"
-import { getPastDates, getStateCodes, groupByMulti, dateReducer } from "./utils"
+import { DATA_ENTRY, StateAPIEntry, STATE_DATA } from "./type-definitions"
+import { getPastDates, getStateCodes, dateReducer, groupBy } from "./utils"
 
 const parseStateData = (masterData: StateAPIEntry[]) =>
-  groupByMulti(
-    [(elem: StateAPIEntry) => elem.State, (elem: StateAPIEntry) => elem.Date],
-    masterData
-  )
+  groupBy((elem: StateAPIEntry) => `${elem.Date}_${elem.State}`, masterData)
 
 const processStateData = () => {
   const { states: masterData } = JSON.parse(
     fs.readFileSync("states.json", "utf8")
   )
-  const stateData: STATE_DETAILS = parseStateData(masterData)
+  const stateData: Record<string, StateAPIEntry[]> = parseStateData(masterData)
   const CODES = getStateCodes()
   const masterStatesArray: STATE_DATA[] = []
   CODES.forEach(stateCode => {
@@ -28,7 +20,7 @@ const processStateData = () => {
 }
 
 const getStateData = (
-  masterData: STATE_DETAILS,
+  masterData: Record<string, StateAPIEntry[]>,
   stateCode: STATE_CODES
 ): STATE_DATA => {
   const data: DATA_ENTRY[] = []

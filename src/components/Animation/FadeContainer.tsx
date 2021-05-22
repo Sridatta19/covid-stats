@@ -10,15 +10,16 @@ const PANEL_VARIANTS: Variants = {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 0.3,
-      ease: [0.445, 0.05, 0.55, 0.95],
+      duration: 0.12,
+      type: "tween",
+      ease: "anticipate",
       delay: (i + 1) * 0.1,
     },
   }),
   exit: {
     x: -100,
     opacity: 0,
-    transition: { duration: 0.3, delay: 0.15 },
+    transition: { duration: 0.12, delay: 0.15 },
   },
 }
 
