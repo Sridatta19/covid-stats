@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors")
+
 module.exports = {
   purge: {
     mode: "all",
@@ -7,6 +9,16 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        teal: colors.teal,
+        cyan: colors.cyan,
+        amber: colors.amber,
+        emerald: colors.emerald,
+        lime: colors.lime,
+        fuchsia: colors.fuchsia,
+        orange: colors.orange,
+        "light-blue": colors.lightBlue,
+      },
       borderRadius: {
         xl: "1rem",
       },

@@ -87,9 +87,11 @@ export const pageQuery = graphql`
             dc
             dd
             dr
+            dt
             tc
             td
             tr
+            tt
           }
         }
       }
@@ -103,9 +105,11 @@ export const pageQuery = graphql`
             dc
             dd
             dr
+            dt
             tc
             td
             tr
+            tt
           }
         }
       }

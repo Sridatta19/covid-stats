@@ -103,9 +103,11 @@ interface NodeType {
   dc: number
   dd: number
   dr: number
+  dt: number
   tc: number
   td: number
   tr: number
+  tt: number
 }
 
 interface StatsProps {

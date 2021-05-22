@@ -46,6 +46,7 @@ const DataTable = ({ stateId, childData, dataKey }) => {
         dc: lastEntry.dc,
         dd: lastEntry.dd,
         dr: lastEntry.dr,
+        dt: lastEntry.dt,
         name: stateCodes[code] || code,
         [KEY_MAPPINGS[dataKey].totalKey]:
           childData[code].data[childData[code].data.length - 1][

@@ -9,7 +9,8 @@ import { fmt, transformKeys } from "../utils/fn-utils"
 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default
+mapboxgl.workerClass =
+  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default
 //Refer: https://github.com/mapbox/mapbox-gl-js/issues/10173
 
 const STATE_MAPPINGS = transformKeys(stateCodes, s => s.toLowerCase())
@@ -43,7 +44,7 @@ const MapboxComponent = ({ stateId, dataKey, stepFn, zoomMap, centerMap }) => {
     map.on("load", function () {
       map.addSource("states", {
         type: "geojson",
-        data: `https://raw.githubusercontent.com/Sridatta19/covid-stats/maps/lib/geojson/${stateId}.json`,
+        data: `https://raw.githubusercontent.com/Sridatta19/covid-stats/tested/lib/geojson/${stateId}.json`,
       })
 
       let fillColors = [

@@ -37,7 +37,7 @@ const Button = ({ dataKey, setKey, buttonKey }: ButtonProps) => {
     <button
       onClick={() => setKey(buttonKey)}
       aria-label={KEY_MAPPINGS[buttonKey].label}
-      className={`${KEY_MAPPINGS[buttonKey].class} relative flex justify-center items-center w-24 md:w-36 py-2.5 md:py-3 border border-gray-400 cursor-pointer bg-transparent text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-red active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150`}
+      className={`${KEY_MAPPINGS[buttonKey].class} relative flex justify-center items-center w-16 md:w-28 py-2.5 md:py-3 border border-gray-400 cursor-pointer bg-transparent text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-red active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150`}
     >
       {dataKey !== buttonKey && (
         <motion.span

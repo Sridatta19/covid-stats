@@ -5,6 +5,7 @@ export interface APIEntry {
   Confirmed: string
   Recovered: string
   Deceased: string
+  Tested: string
 }
 
 export interface StateAPIEntry extends APIEntry {
@@ -21,9 +22,11 @@ export interface DATA_ENTRY {
   dc: number
   dd: number
   dr: number
+  dt: number
   tc: number
   td: number
   tr: number
+  tt: number
 }
 
 export interface DETAILS {}

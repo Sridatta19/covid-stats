@@ -64,9 +64,11 @@ export const pageQuery = graphql`
             dc
             dd
             dr
+            dt
             tc
             td
             tr
+            tt
           }
         }
       }

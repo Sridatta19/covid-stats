@@ -1,5 +1,10 @@
 import { timeParse } from "d3-time-format"
-import { ConfirmedIcon, DeceasedIcon, RecoveredIcon } from "../Common/Icons"
+import {
+  ConfirmedIcon,
+  DeceasedIcon,
+  TestedIcon,
+  RecoveredIcon,
+} from "../Common/Icons"
 import { DATA_KEY, MAPPING_VALUE } from "./type-definitions"
 
 const parseDate = timeParse("%Y-%m-%d")
@@ -49,9 +54,22 @@ export const KEY_MAPPINGS: Record<DATA_KEY, MAPPING_VALUE> = {
     buttonGradient: "from-green-500 to-yellow-400",
     countGradient:
       "from-green-500 dark:from-green-400 to-yellow-500 dark:to-yellow-400",
-    class: "-ml-px rounded-br-full",
+    class: "-ml-px",
     stroke: "#45B649",
     key: "New Recovered",
+  },
+  dt: {
+    label: "tested",
+    totalLabel: "Total Tested",
+    totalKey: "tt",
+    palette: ["#FCD34D", "#F59E0B", "#A78BFA", "#F0ABFC", "#D946EF"],
+    gradient: ["#D946EF", "#FBBF24"],
+    buttonGradient: "from-fuchsia-500 to-amber-400",
+    countGradient:
+      "from-fuchsia-500 dark:from-fuchsia-400 to-amber-500 dark:to-amber-400",
+    class: "-ml-px rounded-br-full",
+    stroke: "#45B649",
+    key: "New Tested",
   },
 }
 
@@ -59,4 +77,5 @@ export const KEY_BUTTONS: { [key: string]: () => JSX.Element } = {
   dc: ConfirmedIcon,
   dd: DeceasedIcon,
   dr: RecoveredIcon,
+  dt: TestedIcon,
 }

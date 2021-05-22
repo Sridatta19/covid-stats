@@ -1,4 +1,4 @@
-export type DATA_KEY = "dc" | "dd" | "dr"
+export type DATA_KEY = "dc" | "dd" | "dr" | "dt"
 
 export type MODE = "chart" | "list" | "map" | null
 
@@ -20,7 +20,9 @@ export interface DATA_ENTRY {
   dc: number
   dd: number
   dr: number
+  dt: number
   tc: number
   td: number
   tr: number
+  tt: number
 }

@@ -33,9 +33,11 @@ const prepareEntry = ({ delta, total }: any, date: string): DATA_ENTRY => ({
   dc: delta && delta.confirmed ? delta.confirmed : 0,
   dd: delta && delta.deceased ? delta.deceased : 0,
   dr: delta && delta.recovered ? delta.recovered : 0,
+  dt: delta && delta.tested ? delta.tested : 0,
   tc: total && total.confirmed ? total.confirmed : 0,
   td: total && total.deceased ? total.deceased : 0,
   tr: total && total.recovered ? total.recovered : 0,
+  tt: total && total.tested ? total.tested : 0,
 })
 
 export const safeGet = (

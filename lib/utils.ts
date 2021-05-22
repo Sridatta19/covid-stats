@@ -114,9 +114,14 @@ export const createEntry = <T extends APIEntry>(
       delta.Recovered && previousData.Recovered
         ? Math.abs(Number(delta.Recovered) - Number(previousData.Recovered))
         : 0,
+    dt:
+      delta.Tested && previousData.Tested
+        ? Math.abs(Number(delta.Tested) - Number(previousData.Tested))
+        : 0,
     tc: delta.Confirmed ? Number(delta.Confirmed) : 0,
     td: delta.Deceased ? Number(delta.Deceased) : 0,
     tr: delta.Recovered ? Number(delta.Recovered) : 0,
+    tt: delta.Tested ? Number(delta.Tested) : 0,
   }
 }
 
@@ -126,9 +131,11 @@ export const createDefaultEntry = (date: string): DATA_ENTRY => {
     dc: 0,
     dd: 0,
     dr: 0,
+    dt: 0,
     tc: 0,
     td: 0,
     tr: 0,
+    tt: 0,
   }
 }
 
