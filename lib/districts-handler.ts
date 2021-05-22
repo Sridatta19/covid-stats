@@ -48,7 +48,6 @@ const retrieveDistrictsDataByState = (
   index: number
 ) => {
   const data: DATA_ENTRY[] = []
-  console.log("DISTRICT INFO", stateCode, district)
   getPastDates().forEach(
     dateReducer(data, masterData, [STATE_MAPPINGS[stateCode], district]),
     {}

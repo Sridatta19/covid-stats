@@ -10,6 +10,7 @@ module.exports = {
     description: `An ongoing statistical accumulation of coronavirus cases and deaths in India`,
     author: `@gatsbyjs`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {

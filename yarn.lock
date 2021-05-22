@@ -5482,10 +5482,10 @@ gatsby-telemetry@^2.5.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-animated-tailwind@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-animated-tailwind/-/gatsby-theme-animated-tailwind-1.3.0.tgz#a22a5ac51865b4836c75c8378511ddbd2a2e68b0"
-  integrity sha512-rvzOOGEg8yX6D4NNTn81bKblJG0Z78dP++TKc+qxl47GYixTYJV8dkAJ2Ke1oo+IcJz+8gYiuAsBD4CzchFwqQ==
+gatsby-theme-animated-tailwind@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-animated-tailwind/-/gatsby-theme-animated-tailwind-1.3.1.tgz#6fdec6c09f991e00588ccabaed26b7819a736b86"
+  integrity sha512-t7NN5iSD4bchX5eKQcml9uYr4WCbc1M7eE+i2Tv027iyrnnE/rBKGE6XAibTgwalatphqwUThiPv6yK1/KxOdQ==
   dependencies:
     "@tailwindcss/aspect-ratio" "^0.2.0"
     "@tailwindcss/forms" "^0.3.2"
