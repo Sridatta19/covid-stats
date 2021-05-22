@@ -1,4 +1,4 @@
-const path = require(`path`)
+const path = require("path")
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html") {
@@ -18,8 +18,8 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const stateTemplate = path.resolve(`./src/templates/state-template.js`)
-  const districtTemplate = path.resolve(`./src/templates/district-template.js`)
+  const stateTemplate = path.resolve(`./src/templates/StateTemplate.tsx`)
+  const districtTemplate = path.resolve(`./src/templates/DistrictTemplate.tsx`)
   const result = await graphql(
     `
       {
@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const states = result.data.allStatesJson.edges
   const districts = result.data.allDistrictsJson.edges
 
-  states.forEach((state, index) => {
+  states.forEach(state => {
     createPage({
       path: `/state/${state.node.id.toLowerCase()}`,
       component: stateTemplate,
@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-  districts.forEach((district, index) => {
+  districts.forEach(district => {
     createPage({
       path: `/state/${district.node.name.toLowerCase()}/district/${
         district.node.district

@@ -2,7 +2,7 @@ require("dotenv").config({
   path: `.env`,
 })
 
-const path = require("path")
+let path = require("path")
 
 module.exports = {
   siteMetadata: {
@@ -10,6 +10,7 @@ module.exports = {
     description: `An ongoing statistical accumulation of coronavirus cases and deaths in India`,
     author: `@gatsbyjs`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
@@ -46,17 +47,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-alias-imports`,
-      options: {
-        alias: {
-          "@components": path.resolve(__dirname, "src/components"),
-          "@utils": path.resolve(__dirname, "src/utils"),
-          "@lib": path.resolve(__dirname, "lib"),
-        },
-        extensions: [],
-      },
-    },
-    {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         color: `tomato`,
@@ -71,9 +61,7 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
-    },
+    `gatsby-plugin-typescript`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

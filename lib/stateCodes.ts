@@ -1,0 +1,45 @@
+enum STATE_MAPPINGS {
+  MH = "Maharashtra",
+  TN = "Tamil Nadu",
+  AP = "Andhra Pradesh",
+  KA = "Karnataka",
+  DL = "Delhi",
+  UP = "Uttar Pradesh",
+  WB = "West Bengal",
+  BR = "Bihar",
+  TG = "Telangana",
+  GJ = "Gujarat",
+  AS = "Assam",
+  RJ = "Rajasthan",
+  OR = "Odisha",
+  HR = "Haryana",
+  MP = "Madhya Pradesh",
+  KL = "Kerala",
+  PB = "Punjab",
+  JK = "Jammu and Kashmir",
+  JH = "Jharkhand",
+  CT = "Chhattisgarh",
+  UT = "Uttarakhand",
+  GA = "Goa",
+  TR = "Tripura",
+  PY = "Puducherry",
+  MN = "Manipur",
+  HP = "Himachal Pradesh",
+  NL = "Nagaland",
+  AR = "Arunachal Pradesh",
+  AN = "Andaman and Nicobar Islands",
+  LA = "Ladakh",
+  CH = "Chandigarh",
+  DN = "Dadra and Nagar Haveli and Daman and Diu",
+  ML = "Meghalaya",
+  SK = "Sikkim",
+  MZ = "Mizoram",
+  LD = "Lakshadweep",
+  TT = "India",
+}
+
+export type STATE_CODES = keyof typeof STATE_MAPPINGS
+
+export type STATE_NAMES = `${STATE_MAPPINGS}`
+
+export default STATE_MAPPINGS
