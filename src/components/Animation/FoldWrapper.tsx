@@ -10,7 +10,8 @@ const FoldWrapper = ({ children }: { children: ReactNode }) => {
           initial={{ y: -75, opacity: 0 }}
           transition={{
             duration: 0.3,
-            ease: [0.445, 0.05, 0.55, 0.95],
+            type: "tween",
+            ease: "anticipate",
             delay: 0.3 + index * 0.4,
           }}
         >
