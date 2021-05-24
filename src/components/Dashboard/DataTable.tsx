@@ -11,6 +11,7 @@ import {
 } from "../utils/fn-utils"
 import DISTRICT_CODES from "../../../lib/districtNames"
 import stateCodes from "../../../lib/stateCodes"
+import { AnimateSharedLayout, motion } from "framer-motion"
 
 const STATE_MAPPINGS = transformKeys(stateCodes, s => s.toLowerCase())
 
@@ -144,52 +145,54 @@ const TableBody = ({ stateId, dataKey, data, noTodayData }) => {
     }
   }
   return (
-    <tbody className="theme-bg divide-y divide-gray-200">
-      {data.map((el, index) => {
-        return (
-          <tr key={index}>
-            <td
-              role="button"
-              onClick={() => rowClick(el.code)}
-              className="px-2 md:px-4 py-3 break-normal cursor-pointer whitespace-pre-wrap text-xs sm:text-sm leading-5 text-primary"
-            >
-              {el.code}
-              {(el.date === formatDate(new Date()) || noTodayData) && (
-                <p
-                  className={`font-serif font-medium text-xs sm:text-sm lg:text-base bg-clip-text text-transparent bg-gradient-to-r ${KEY_MAPPINGS[dataKey].countGradient}`}
-                >{`${el[dataKey] > 0 ? "+" : ""}${fmt(el[dataKey])}`}</p>
-              )}
-            </td>
-            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
-              {fmt(el[KEY_MAPPINGS[dataKey].totalKey])}
-            </td>
-            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
-              {fmt(el.lw)}
-            </td>
-            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
-              {fmt(el.pw)}
-            </td>
-            <td className="px-2 md:px-4 py-3 whitespace-nowrap text-sm sm:text-lg font-rose tracking-wide font-medium leading-5 text-secondary">
-              {el.average < 0 ? (
-                <>
-                  <span className="text-green-500">{`${el.average}%`}</span>
-                  <Downtrend />
-                </>
-              ) : el.average > 0 ? (
-                <>
-                  <span className="text-red-500">{`+${el.average}%`}</span>
-                  <Uptrend />
-                </>
-              ) : (
-                <span className="text-4xl lg:text-5xl text-center text-secondary">
-                  ~
-                </span>
-              )}
-            </td>
-          </tr>
-        )
-      })}
-    </tbody>
+    <AnimateSharedLayout>
+      <motion.tbody layout className="theme-bg divide-y divide-gray-200">
+        {data.map(el => {
+          return (
+            <motion.tr layout key={el.code}>
+              <td
+                role="button"
+                onClick={() => rowClick(el.code)}
+                className="px-2 md:px-4 py-3 break-normal cursor-pointer whitespace-pre-wrap text-xs sm:text-sm leading-5 text-primary"
+              >
+                {el.code}
+                {(el.date === formatDate(new Date()) || noTodayData) && (
+                  <p
+                    className={`font-serif font-medium text-xs sm:text-sm lg:text-base bg-clip-text text-transparent bg-gradient-to-r ${KEY_MAPPINGS[dataKey].countGradient}`}
+                  >{`${el[dataKey] > 0 ? "+" : ""}${fmt(el[dataKey])}`}</p>
+                )}
+              </td>
+              <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
+                {fmt(el[KEY_MAPPINGS[dataKey].totalKey])}
+              </td>
+              <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
+                {fmt(el.lw)}
+              </td>
+              <td className="px-2 md:px-4 py-3 whitespace-nowrap text-xxs sm:text-sm leading-5 text-secondary">
+                {fmt(el.pw)}
+              </td>
+              <td className="px-2 md:px-4 py-3 whitespace-nowrap text-sm sm:text-lg font-rose tracking-wide font-medium leading-5 text-secondary">
+                {el.average < 0 ? (
+                  <>
+                    <span className="text-green-500">{`${el.average}%`}</span>
+                    <Downtrend />
+                  </>
+                ) : el.average > 0 ? (
+                  <>
+                    <span className="text-red-500">{`+${el.average}%`}</span>
+                    <Uptrend />
+                  </>
+                ) : (
+                  <span className="text-4xl lg:text-5xl text-center text-secondary">
+                    ~
+                  </span>
+                )}
+              </td>
+            </motion.tr>
+          )
+        })}
+      </motion.tbody>
+    </AnimateSharedLayout>
   )
 }
 
