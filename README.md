@@ -1,6 +1,6 @@
 <p float="left" align="center">
 <img height="50" style="padding-right:20px;" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"/>
-<img height="50" style="padding-right:20px;" src="https://raw.githubusercontent.com/mapbox/mapbox-gl-js-docs/publisher-production/docs/pages/assets/logo.png"/>
+<img height="50" style="padding-right:20px;" src="https://camo.githubusercontent.com/fb4b319edc8e4001cf633fca4c2c6d93e77595159e1450c8f825eca3f41499a9/68747470733a2f2f7374617469632d6173736574732e6d6170626f782e636f6d2f7777772f6c6f676f732f6d6170626f782d6c6f676f2d626c61636b2e706e67"/>
 <img height="50" style="padding-right:20px;" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" />
 <img height="50" style="padding-right:20px;" src="https://raw.githubusercontent.com/d3/d3-logo/master/d3.png" />
 <img height="50" style="padding-right:20px;" src="https://refactoringui.nyc3.cdn.digitaloceanspaces.com/tailwind-logo.svg" />
