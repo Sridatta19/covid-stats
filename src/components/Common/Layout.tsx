@@ -9,12 +9,12 @@ interface LayoutProps {
 
 const Layout = ({ children, path }: LayoutProps) => {
   const [isDark, setDark] = useState(false)
-  const [apiResult, setApiResult] = useState(0)
+  const [apiResult, _setApiResult] = useState(0)
   useEffect(() => {
     // get data from Covid India API
-    fetch("https://api.covid19india.org/v4/data.json")
-      .then(response => response.json()) // parse JSON from request
-      .then(resultData => setApiResult(resultData)) // set data for the today's data
+    // fetch("https://api.covid19india.org/v4/data.json")
+    //   .then(response => response.json()) // parse JSON from request
+    //   .then(resultData => setApiResult(resultData)) // set data for the today's data
   }, [])
   const toggleTheme = () => {
     const root = document.getElementsByTagName("html")[0]
