@@ -7,7 +7,7 @@ export const retrieveRecentDatesFormatted = (
   return dates.reduce(
     (acc: { [name: string]: boolean }, _: any, index: number) => {
       // Covid19India last date is Oct 31st 2021
-      const subtractedDate = new Date("10-30-2021").setDate(new Date("10-30-2021").getDate() - index)
+      const subtractedDate = new Date("October 30, 2021").setDate(new Date("October 30, 2021").getDate() - index)
       const date: string = formatDate(subtractedDate)
       acc[date] = true
       return acc
@@ -119,7 +119,7 @@ export const getCountryEntry = (response: any): DATA_ENTRY | null => {
       ["meta", "last_updated"],
       response.TT
     )
-    const date = dateStr ? new Date(dateStr) : new Date("10-30-2021")
+    const date = dateStr ? new Date(dateStr) : new Date("October 30, 2021")
     return prepareEntry(response.TT, getFormattedDate(date))
   }
   return null
@@ -129,7 +129,7 @@ export const getEntryDate = (entry: { [key: string]: any }) => {
   const dateStr: string | null =
     safeGet(["meta", "tested", "last_updated"], entry) ||
     safeGet(["meta", "last_updated"], entry)
-  const date = dateStr ? new Date(dateStr) : new Date("10-30-2021")
+  const date = dateStr ? new Date(dateStr) : new Date("October 30, 2021")
   return getFormattedDate(date)
 }
 

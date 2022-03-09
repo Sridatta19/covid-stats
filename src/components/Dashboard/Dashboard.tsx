@@ -76,12 +76,15 @@ const MainSection = ({
   data,
 }: MainSectionProps) => {
   const Container = width > LG_SCREEN ? FoldWrapper : React.Fragment
+  if (!Array.isArray(data) || data.length === 0) {
+    return null
+  }
   return (
     <Container>
       {(!displayMode || displayMode === "list") && childData && (
         <DataTable stateId={stateId} dataKey={dataKey} childData={childData} />
       )}
-      {(!displayMode || displayMode === "chart") && (
+      {(!displayMode || displayMode === "chart") && childData && (
         <div
           className={`space-y-8 lg:space-y-10 ${
             !childData && "lg:col-start-2"

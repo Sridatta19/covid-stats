@@ -19,8 +19,8 @@ export const getPastDates = (count: number = 100) => {
   const dates = []
   while (dates.length !== count + 1) {
     // Covid19India last date is Oct 31st 2021
-    const subtractedDate = new Date("10-30-2021").setDate(
-      new Date("10-30-2021").getDate() - dates.length + 1
+    const subtractedDate = new Date("October 30, 2021").setDate(
+      new Date("October 30, 2021").getDate() - dates.length + 1
     )
     const date = new Date(subtractedDate)
     generatedDate = formatDate(date)
@@ -42,7 +42,7 @@ export const formatDate = (date: Date) => {
 // Hack to allow vercel to add future dates data
 export const isNotNearDate = (date: string) => {
   // Covid19India last date is Oct 31st 2021
-  const today = new Date("10-30-2021")
+  const today = new Date("October 30, 2021")
   const yesterday = new Date(today.setDate(today.getDate() - 1))
   const tomorrow = new Date(today.setDate(today.getDate() + 1))
 

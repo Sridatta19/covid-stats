@@ -66,7 +66,7 @@ const DataTable = ({ stateId, childData, dataKey }) => {
   parsedData.sort((a, b) =>
     isAscSort ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]
   )
-  const today = formatDate(new Date("10-30-2021"))
+  const today = formatDate(new Date("October 30, 2021"))
   const noTodayData = parsedData.map(e => e.date).every(dt => dt !== today)
   return (
     <div className="flex flex-col lg:rounded-xl border dark-border overflow-hidden">
@@ -156,7 +156,7 @@ const TableBody = ({ stateId, dataKey, data, noTodayData }) => {
                 className="px-2 md:px-4 py-3 break-normal cursor-pointer whitespace-pre-wrap text-xs sm:text-sm leading-5 text-primary"
               >
                 {el.code}
-                {(el.date === formatDate(new Date("10-30-2021")) ||
+                {(el.date === formatDate(new Date("October 30, 2021")) ||
                   noTodayData) && (
                   <p
                     className={`font-serif font-medium text-xs sm:text-sm lg:text-base bg-clip-text text-transparent bg-gradient-to-r ${KEY_MAPPINGS[dataKey].countGradient}`}
